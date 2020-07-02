@@ -1,0 +1,22 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title ExpressJS
+        link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
+        //- link(rel="stylesheet", href="./layout/main.css")
+    body
+        nav.navbar.navbar-expand.bg-light.navbar-primary
+            a.navbar-brand(href='/user') Home
+            button.navbar-toggler(data-toggle='collapse', data-target='#nav1')
+                span.navbar-toggler-icon
+            #nav1.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item.active
+                        a.nav-link(href='#') Menu
+                    li.nav-item
+                        a.nav-link(href='#') Contact
+            if(auser)
+                p= auser.name
+        .container
+            block content

@@ -1,0 +1,20 @@
+extends ../layout/common.pug
+
+block content
+   
+    h1.mt-5 Hello you!!! This is list users.
+    a.p-1.btn.btn-primary(href="/user/create") Create
+    form(action="/user/search" class="d-flex" method="get")
+        input.mr-5.form-control(type="text" name="q")
+        input.ml-auto(type="submit")        
+    table.table
+        tr
+            th Name
+            th Phone
+            th Action
+        each u in user
+            tr
+                td= u.name
+                td= u.phone
+                td 
+                    a(href="/user/"+ u.id) View

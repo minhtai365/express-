@@ -1,0 +1,14 @@
+extends ../layout/common.pug
+
+block content
+    h1 Login
+
+    if Errors
+        each err in Errors
+            .alert.alert-danger= err            
+    form(action="/login/index" method="post")
+        label.d-block(for="email") Email
+        input#email(type="email" name="email",value=Values ? Values.email : "")
+        label.d-block(for="pass") Password
+        input#pass.d-block(type="password" name="pass",value=Values ? Values.pass : "")
+        button.mt-3.btn-primary Login
