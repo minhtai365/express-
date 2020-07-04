@@ -1,0 +1,47 @@
+extends ../layout/common.pug
+
+block content
+    h1 Products
+    form(action="/product/search", method="get")
+        .form-group.d-flex.justify-content-end
+            input(type="text" name="pr")
+            input.btn-primary(type="submit", value="Search")
+    each item in products
+        div(style="margin:0;padding:10px;width:25%;float:left;")
+            .card(style="padding:0")
+                img(src= item.img, alt="Hình ảnh")
+                .card-body                    
+                    h5= item.name
+                    p(style="height:70px")= item.detail
+                    h4.text-center= item.price
+                    div.text-center
+                        button.text-center.btn-primary.btn Add to cart    
+    
+    div(style="clear:both")  
+        -var n=1;      
+        ul.pagination.justify-content-center
+            -if(pag==1)
+                li.page-item.disabled  
+                    a.page-link(href='/product/index?page='+(pag-1), aria-label='Previous')
+                        span(aria-hidden='true') &laquo;
+                        span.sr-only Previous            
+            -else
+                li.page-item                
+                    a.page-link(href='/product/index?page='+(pag-1), aria-label='Previous')
+                        span(aria-hidden='true') &laquo;
+                        span.sr-only Previous
+            while n<=num
+                li.page-item
+                    a.page-link(href='/product/index?page='+n)= n++
+            -if(pag!=num)
+                li.page-item
+                    a.page-link(href='/product/index?page='+(pag+1), aria-label='Next')
+                        span(aria-hidden='true') &raquo;
+                        span.sr-only Next
+            -else
+                li.page-item.disabled
+                    a.page-link(href='/product/index?page='+(pag+1), aria-label='Next')
+                        span(aria-hidden='true') &raquo;
+                        span.sr-only Next
+        
+        

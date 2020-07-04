@@ -19,7 +19,7 @@ router.get('/',function (req, res) {
 });
 router.get('/search', function (req, res) {
     var q = req.query.q;
-    var valsearch = user.filter(function (li) {
+    var valsearch = db.get('user').value().filter(function (li) {
         return li.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
     });
     console.log(req.query);
