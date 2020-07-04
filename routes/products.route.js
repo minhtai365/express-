@@ -2,7 +2,7 @@ var express = require('express');
 const db = require('../db');
 var router = express.Router();
 
-router.get('/index',function(req,res){
+router.get('/',function(req,res){
     var pag=parseInt(req.query.page)||1;//n
     var pages= 8; //x
     var start= (pag-1)*pages;

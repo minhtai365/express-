@@ -6,13 +6,14 @@ block content
     if Errors
         each err in Errors
             .alert.alert-danger= err            
-    form(action="/user/create" method="post")
-        label(for="") Name
-        input(type="text" name="name",value=Values ? Values.name : "")
-        br
-        br
-        label(for="") Phone
-        input(type="text" name="phone",value=Values ? Values.phone : "")
-        br
-        br
-        button Create
+    form(action="/user/create" method="post" enctype="multipart/form-data")
+        .form-group
+            label(for="") Name
+            input.form-control(type="text" name="name",value=Values ? Values.name : "")
+        .form-group
+            label(for="") Phone
+            input.form-control(type="text" name="phone",value=Values ? Values.phone : "")
+        .form-group
+            label(for="avt") Avatar
+            input#avt.form-control-file(type="file" name="avt")
+        button.btn-primary Create

@@ -8,12 +8,15 @@ block content
         input.mr-5.form-control(type="text" name="q")
         input.ml-auto(type="submit")        
     table.table
-        tr
+        tr  
+            th Avata
             th Name
             th Phone
             th Action
         each u in user
             tr
+                td
+                    img.rounded-circle(src=u.avt,width="50px")
                 td= u.name
                 td= u.phone
                 td 

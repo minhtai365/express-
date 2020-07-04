@@ -1,11 +1,13 @@
 var express = require('express');
+//multer for uploadfile
+var multer  = require('multer')
+var upload = multer({ dest: './public/uploads/' })
 var router = express.Router();
 //shortid
 const shortid = require('shortid');
 var db = require('../db');
 //requied
 var reqLogin=require('../requied/requied.login');
-
 // var user = [
 //     { id: 0, name: 'Trần' },
 //     { id: 1, name: 'Minh' },
@@ -17,6 +19,7 @@ router.get('/',function (req, res) {
         user: db.get('user').value()
     });
 });
+
 router.get('/search', function (req, res) {
     var q = req.query.q;
     var valsearch = db.get('user').value().filter(function (li) {
@@ -28,8 +31,14 @@ router.get('/search', function (req, res) {
 router.get('/create', function (req, res) {
     res.render('user/create');
 });
-router.post('/create',function(req,res){
+router.post('/create',upload.single('avt'),
+    function(req,res){
     req.body.id=shortid.generate();
+    // var path=req.file.path.split('\\').slice(1).join('\\');
+    var path=req.file.path.split('\\').slice(1).join('/');
+    req.body.avt=path;
+    // req.body.avt=req.file.path.split('/').slice(1).join("");
+
     var err=[];
     if (!req.body.name) {
         err.push("Name is requied !!!")

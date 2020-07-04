@@ -15,7 +15,7 @@ block content
                     p(style="height:70px")= item.detail
                     h4.text-center= item.price
                     div.text-center
-                        button.text-center.btn-primary.btn Add to cart    
+                        a(href="/cart/add/"+item.id).text-center.btn-primary.btn Add to cart    
     
     div(style="clear:both")  
         -var n=1;      
